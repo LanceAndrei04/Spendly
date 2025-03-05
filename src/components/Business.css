@@ -1,0 +1,171 @@
+.business-profile {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.profile-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;
+  background-color: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--accent-color);
+  overflow: hidden;
+}
+
+.image-placeholder {
+  font-size: 4rem;
+}
+
+.change-image-btn {
+  background-color: var(--bg-secondary);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.change-image-btn:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.edit-btn, .save-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-btn {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+}
+
+.save-btn {
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+}
+
+.edit-btn:hover {
+  background-color: #3b82f6;
+}
+
+.save-btn:hover {
+  background-color: #38a169;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-section {
+  background-color: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.profile-section h2 {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.info-item label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.info-item p {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.info-item input,
+.info-item select,
+.info-item textarea {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.info-item textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.info-item input:focus,
+.info-item select:focus,
+.info-item textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+@media (max-width: 768px) {
+  .business-profile {
+    padding: 1rem;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+} 

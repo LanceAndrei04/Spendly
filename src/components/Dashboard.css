@@ -1,0 +1,131 @@
+.dashboard {
+  padding: 2rem;
+}
+
+.dashboard h2 {
+  margin-bottom: 2rem;
+  color: #e2e8f0;
+  font-size: 1.5rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-card {
+  background: #1a1b1e;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid #2d2d2d;
+}
+
+.dashboard-card h3 {
+  color: #a0aec0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card .amount {
+  color: #60a5fa;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.dashboard-charts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.chart-card {
+  background: #1a1b1e;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid #2d2d2d;
+}
+
+.chart-card h3 {
+  color: #a0aec0;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.chart-placeholder {
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 1rem;
+  background: #121316;
+  border-radius: 6px;
+}
+
+.chart-bar {
+  width: 40px;
+  background: #60a5fa;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.pie-chart {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #121316;
+}
+
+.pie-segment {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(
+    #60a5fa var(--percentage),
+    transparent var(--percentage)
+  );
+  transform: rotate(var(--rotation));
+  border-radius: 50%;
+}
+
+.pie-segment:nth-child(1) {
+  background: conic-gradient(
+    #60a5fa var(--percentage),
+    transparent var(--percentage)
+  );
+}
+
+.pie-segment:nth-child(2) {
+  background: conic-gradient(
+    #48bb78 var(--percentage),
+    transparent var(--percentage)
+  );
+}
+
+.pie-segment:nth-child(3) {
+  background: conic-gradient(
+    #ed8936 var(--percentage),
+    transparent var(--percentage)
+  );
+}
+
+@media (max-width: 1024px) {
+  .dashboard-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard {
+    padding: 1rem;
+  }
+} 

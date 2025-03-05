@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #121316;
+  --bg-secondary: #1a1b1e;
+  --border-color: #2d2d2d;
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --accent-color: #60a5fa;
+  --danger-color: #fc8181;
+  --success-color: #48bb78;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+}
+
+.content-wrapper {
+  flex: 1;
+  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-header {
+  background-color: var(--bg-secondary);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.business-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.header-icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.icon-button:hover {
+  background-color: var(--bg-primary);
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  min-height: calc(100vh - 64px);
+  background-color: var(--bg-primary);
+}
+
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app-header {
+  background-color: #2c5282;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.total-expenses {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.add-expense-section,
+.expenses-list-section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input,
+select {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+input::placeholder {
+  color: var(--text-secondary);
+}
+
+.submit-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #3b82f6;
+}
+
+.expenses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.expense-details h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.expense-category {
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.expense-date {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.expense-amount {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c5282;
+}
+
+.delete-btn {
+  background-color: var(--danger-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #f56565;
+}
+
+.no-expenses {
+  text-align: center;
+  color: #718096;
+  padding: 2rem;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px dashed #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 70px;
+    padding: 1rem;
+  }
+
+  .app-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

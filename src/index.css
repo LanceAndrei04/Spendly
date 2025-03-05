@@ -1,0 +1,26 @@
+:root {
+  --primary-color: #2c5282;
+  --secondary-color: #4299e1;
+  --danger-color: #fc8181;
+  --background-color: #f5f7fa;
+  --text-color: #2d3748;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#root {
+  min-height: 100vh;
+}
