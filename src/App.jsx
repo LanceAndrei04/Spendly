@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import Business from "./components/Business";
+import Expenses from "./components/Expenses";
 
 function App() {
   const [activePage, setActivePage] = useState("dashboard");
@@ -14,7 +15,7 @@ function App() {
       case "business":
         return <Business />;
       case "expenses":
-        return <div className="page-content">Business Expense Logging</div>;
+        return <Expenses />;
       case "income":
         return <div className="page-content">Income Management</div>;
       case "account":
