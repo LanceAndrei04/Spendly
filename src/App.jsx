@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { FaCog, FaUserCircle } from 'react-icons/fa';
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import Business from "./components/Business";
 import Expenses from "./components/Expenses";
+import Account from "./components/Account";
 
 function App() {
   const [activePage, setActivePage] = useState("dashboard");
@@ -19,7 +21,7 @@ function App() {
       case "income":
         return <div className="page-content">Income Management</div>;
       case "account":
-        return <div className="page-content">Account Settings</div>;
+        return <Account />;
       default:
         return <Dashboard />;
     }
@@ -33,10 +35,10 @@ function App() {
           <div className="business-name">BUSINESS NAME</div>
           <div className="header-icons">
             <button className="icon-button">
-              <span className="icon">⚙️</span>
+              <FaCog className="icon" />
             </button>
             <button className="icon-button">
-              <span className="icon">👤</span>
+              <FaUserCircle className="icon" />
             </button>
           </div>
         </header>

@@ -71,7 +71,7 @@ const Expenses = () => {
         ]
       },
       { 
-        name: 'Transportation', 
+name: 'Delivery', 
         amount: 600, 
         icon: <FaTruck />, 
         color: '#ed8936',
