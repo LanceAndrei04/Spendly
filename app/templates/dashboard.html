@@ -1,15 +1,123 @@
 {% extends "base.html" %} {% block title %}Dashboard{% endblock %} {% block
 content %}
-<div class="row">
+<!-- Business Name Header -->
+<div class="row mb-4">
   <div class="col-12">
-    <h1>Dashboard</h1>
-    <hr />
+    <div class="business-header">
+      <div class="d-flex align-items-center">
+        <div class="business-avatar">
+          <i class="fas fa-building"></i>
+        </div>
+        <div class="ms-3">
+          <h1 class="business-name mb-0">BUSINESSNAME</h1>
+          <p class="text-muted mb-0">Dashboard Overview</p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- Budget Overview Section -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h2 class="mb-4">Budget Overview</h2>
+            <div class="budget-meter-container">
+              <div class="budget-meter">
+                <div class="meter-fill" style="width: 45%"></div>
+                <div class="meter-marker" style="left: 80%">
+                  <div class="marker-line"></div>
+                  <span class="marker-label">Alert Threshold</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between mt-2">
+                <span>$0</span>
+                <span class="current-spent">$4,500</span>
+                <span>$10,000</span>
+              </div>
+            </div>
+            <div class="budget-stats mt-4">
+              <div class="stat-item">
+                <span class="stat-label">Monthly Budget</span>
+                <span class="stat-value">$10,000</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Spent</span>
+                <span class="stat-value text-warning">$4,500</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Remaining</span>
+                <span class="stat-value text-success">$5,500</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="budget-settings">
+              <h4 class="mb-3">Budget Settings</h4>
+              <form>
+                <div class="mb-3">
+                  <label class="form-label">Monthly Budget Limit</label>
+                  <div class="input-group">
+                    <span class="input-group-text"
+                      ><i class="fas fa-dollar-sign"></i
+                    ></span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter budget amount"
+                      value="10000"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Alert Threshold</label>
+                  <div class="input-group">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter percentage"
+                      value="80"
+                    />
+                    <span class="input-group-text">%</span>
+                  </div>
+                  <small class="text-muted"
+                    >Get notified when expenses reach this percentage of your
+                    budget</small
+                  >
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-save me-2"></i>Update Budget
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Expense Summary Cards -->
+<div class="row">
   <div class="col-md-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Total Expenses</h5>
-        <p class="card-text">Coming soon...</p>
+        <div class="d-flex align-items-center">
+          <div
+            class="icon-wrapper me-3"
+            style="background-color: rgba(231, 76, 60, 0.1)"
+          >
+            <i class="fas fa-chart-pie" style="color: #e74c3c"></i>
+          </div>
+          <div>
+            <h3 class="mb-0">$4,500</h3>
+            <small class="text-muted">This Month</small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -17,7 +125,18 @@ content %}
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Monthly Overview</h5>
-        <p class="card-text">Coming soon...</p>
+        <div class="d-flex align-items-center">
+          <div
+            class="icon-wrapper me-3"
+            style="background-color: rgba(46, 204, 113, 0.1)"
+          >
+            <i class="fas fa-chart-line" style="color: #2ecc71"></i>
+          </div>
+          <div>
+            <h3 class="mb-0">45%</h3>
+            <small class="text-muted">Of Budget Used</small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -25,9 +144,148 @@ content %}
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Recent Transactions</h5>
-        <p class="card-text">Coming soon...</p>
+        <div class="d-flex align-items-center">
+          <div
+            class="icon-wrapper me-3"
+            style="background-color: rgba(52, 152, 219, 0.1)"
+          >
+            <i class="fas fa-receipt" style="color: #3498db"></i>
+          </div>
+          <div>
+            <h3 class="mb-0">15</h3>
+            <small class="text-muted">This Week</small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .business-header {
+    background-color: var(--sidebar-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .business-avatar {
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-blue);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .business-avatar i {
+    font-size: 2rem;
+    color: white;
+  }
+
+  .business-name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .budget-meter-container {
+    padding: 1rem 0;
+  }
+
+  .budget-meter {
+    height: 20px;
+    background-color: var(--darker-bg);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2ecc71 0%, #f1c40f 50%, #e74c3c 100%);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+  }
+
+  .meter-marker {
+    position: absolute;
+    top: -15px;
+    transform: translateX(-50%);
+  }
+
+  .marker-line {
+    width: 2px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 auto;
+  }
+
+  .marker-label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .budget-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-primary);
+  }
+
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-wrapper i {
+    font-size: 1.5rem;
+  }
+
+  .budget-settings {
+    background-color: var(--darker-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .input-group-text {
+    background-color: var(--sidebar-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+  }
+
+  .text-warning {
+    color: #f1c40f !important;
+  }
+
+  .text-success {
+    color: #2ecc71 !important;
+  }
+</style>
 {% endblock %}
