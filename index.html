@@ -38,7 +38,39 @@
         <div id="app-section" class="hidden">
             <nav class="top-nav">
                 <h1><i class="fas fa-wallet"></i> Spendly</h1>
-                <button onclick="logout()" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                <h2 id="business-name">Business</h2>
+                <div class="user-profile">
+                    <button class="user-btn" onclick="toggleUserPopup()">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <!-- User Popup -->
+                    <div id="user-popup" class="user-popup hidden">
+                        <div class="popup-header">
+                            <h3>Profile</h3>
+                            <button class="close-popup" onclick="toggleUserPopup()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="popup-content">
+                            <div class="user-info">
+                                <p><i class="fas fa-user"></i> <span id="user-name"></span></p>
+                                <p><i class="fas fa-envelope"></i> <span id="user-email"></span></p>
+                            </div>
+                            <div class="business-settings">
+                                <h4>Business Settings</h4>
+                                <div class="input-group">
+                                    <input type="text" id="business-name-input" placeholder="Enter Business Name">
+                                    <button onclick="saveBusinessName()">
+                                        <i class="fas fa-save"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                            <button onclick="logout()" class="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </nav>
 
             <div class="dashboard-grid">
@@ -180,6 +212,7 @@
     <script src="js/auth.js"></script>
     <script src="js/budget.js"></script>
     <script src="js/expense.js"></script>
+    <script src="js/profile.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
