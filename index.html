@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spendly - Budget Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login/Signup Section -->
+        <div id="auth-section">
+            <div class="auth-container">
+                <h2>Welcome to Spendly</h2>
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="showLogin()">Login</button>
+                    <button class="auth-tab" onclick="showSignup()">Sign Up</button>
+                </div>
+                
+                <form id="login-form" class="auth-form">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+
+                <form id="signup-form" class="auth-form hidden">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Confirm Password" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main App Section -->
+        <div id="app-section" class="hidden">
+            <nav class="top-nav">
+                <h1><i class="fas fa-wallet"></i> Spendly</h1>
+                <button onclick="logout()" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </nav>
+
+            <div class="dashboard-grid">
+                <!-- Left Side -->
+                <div class="left-panel">
+                    <!-- Budget Overview -->
+                    <div class="budget-overview bento-box">
+                        <h3><i class="fas fa-chart-pie"></i> Budget Overview</h3>
+                        <div class="meter-container">
+                            <div class="meter">
+                                <div class="meter-fill" id="budget-meter"></div>
+                            </div>
+                            <div class="meter-labels">
+                                <span id="total-budget">$0.00</span>
+                                <span id="remaining-budget">$0.00</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Budget Form -->
+                        <form id="budget-form">
+                            <div class="input-group">
+                                <input type="number" id="budget-amount" placeholder="Enter budget amount" required>
+                                <button type="submit"><i class="fas fa-save"></i> Set Budget</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="quick-stats bento-box">
+                        <h3><i class="fas fa-chart-bar"></i> Quick Stats</h3>
+                        <div class="stat-item">
+                            <i class="fas fa-receipt"></i>
+                            <div class="stat-info">
+                                <span class="stat-label">Total Expenses</span>
+                                <span class="stat-value" id="total-expenses">$0.00</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div class="stat-info">
+                                <span class="stat-label">This Month</span>
+                                <span class="stat-value" id="month-expenses">$0.00</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div class="stat-info">
+                                <span class="stat-label">Last Transaction</span>
+                                <span class="stat-value" id="last-transaction">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side -->
+                <div class="right-panel">
+                    <!-- Category Boxes -->
+                    <div class="category-grid">
+                        <div class="category-box bento-box" data-category="utilities">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Utilities</h4>
+                            <div class="category-amount">$0.00</div>
+                            <div class="category-percent">0%</div>
+                        </div>
+                        <div class="category-box bento-box" data-category="inventory">
+                            <i class="fas fa-box"></i>
+                            <h4>Inventory</h4>
+                            <div class="category-amount">$0.00</div>
+                            <div class="category-percent">0%</div>
+                        </div>
+                        <div class="category-box bento-box" data-category="salary">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h4>Salary</h4>
+                            <div class="category-amount">$0.00</div>
+                            <div class="category-percent">0%</div>
+                        </div>
+                        <div class="category-box bento-box" data-category="rent">
+                            <i class="fas fa-home"></i>
+                            <h4>Rent</h4>
+                            <div class="category-amount">$0.00</div>
+                            <div class="category-percent">0%</div>
+                        </div>
+                        <div class="category-box bento-box" data-category="equipment">
+                            <i class="fas fa-tools"></i>
+                            <h4>Equipment</h4>
+                            <div class="category-amount">$0.00</div>
+                            <div class="category-percent">0%</div>
+                        </div>
+                        <div class="category-box bento-box" data-category="other">
+                            <i class="fas fa-ellipsis-h"></i>
+                            <h4>Others</h4>
+                            <div class="category-amount">$0.00</div>
+                            <div class="category-percent">0%</div>
+                        </div>
+                    </div>
+
+                    <!-- Expense Input and Table -->
+                    <div class="expense-section bento-box">
+                        <div class="expense-header">
+                            <h3><i class="fas fa-list"></i> Transactions</h3>
+                            <form id="expense-form">
+                                <div class="expense-input-group">
+                                    <input type="text" id="expense-name" placeholder="Description" required>
+                                    <input type="number" id="expense-amount" placeholder="Amount" required>
+                                    <select id="expense-category" required>
+                                        <option value="">Category</option>
+                                        <option value="utilities">Utilities</option>
+                                        <option value="inventory">Inventory</option>
+                                        <option value="salary">Salary</option>
+                                        <option value="rent">Rent</option>
+                                        <option value="equipment">Equipment</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <button type="submit"><i class="fas fa-plus"></i> Add</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th>Amount</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="expense-list">
+                                    <!-- Expenses will be dynamically added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+    <script src="js/budget.js"></script>
+    <script src="js/expense.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
