@@ -60,7 +60,7 @@ class Budget {
     updateRemaining() {
         const expenses = app.expenseTracker.getTotalExpenses();
         const remaining = this.amount - expenses;
-        document.getElementById('remaining-budget').textContent = `$${remaining.toFixed(2)}`;
+document.getElementById('remaining-budget').textContent = `$${remaining.toFixed(2)}`;
         
         const remainingElement = document.getElementById('remaining-budget');
         if (remaining < 0) {
