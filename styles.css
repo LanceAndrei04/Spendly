@@ -177,6 +177,68 @@ body {
     font-weight: 500;
 }
 
+#budget-form {
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.input-group input {
+    flex: 1;
+    min-width: 0; 
+    padding: 0.75rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.input-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.input-group button {
+    white-space: nowrap; 
+    padding: 0.75rem 1.25rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    flex-shrink: 0; 
+}
+
+.input-group button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+.input-group button:active {
+    transform: translateY(0);
+}
+
+.input-group button i {
+    font-size: 1rem;
+}
+
 .quick-stats {
     padding: 1.5rem;
 }
