@@ -9,9 +9,9 @@ class App {
 
     initialize(user) {
         this.user = user;
-        // Use the numeric ID instead of email
-        this.budget = new Budget(user.id);
-        this.expenseTracker = new ExpenseTracker(user.id);
+        // Initialize managers
+        this.budget = new BudgetManager(user.id);
+        this.expenseManager = new ExpenseManager(user.id);
     }
 }
 
