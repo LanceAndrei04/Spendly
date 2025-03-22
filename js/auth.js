@@ -1,4 +1,4 @@
-// Show/hide auth forms
+
 function showLogin() {
     document.getElementById('login-form').classList.remove('hidden');
     document.getElementById('signup-form').classList.add('hidden');
@@ -47,7 +47,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
             alert(error.error || 'Login failed');
         }
     } catch (error) {
-        alert('Network error. Please try again.');
+alert('Network error. Please try again.');
     }
 });
 

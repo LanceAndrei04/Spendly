@@ -31,18 +31,13 @@ class ExpenseManager {
         try {
             const response = await fetch(`/api/expenses/${this.userId}`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(expense)
             });
 
-            console.log('Add Expense Response Status:', response.status);
-            const responseBody = await response.json();
-            console.log('Add Expense Response Body:', responseBody);
-
             if (response.ok) {
-                expense.id = responseBody.id;
+                const data = await response.json();
+                expense.id = data.id;
                 this.expenses.push(expense);
                 this.ui.updateAll(this.expenses);
                 return true;
@@ -94,4 +89,4 @@ class ExpenseManager {
         });
         return totals;
     }
-}
+}S
