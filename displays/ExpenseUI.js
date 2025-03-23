@@ -5,20 +5,22 @@ class ExpenseUI {
     }
 
     initializeEventListeners() {
-        document.getElementById('expense-form').addEventListener('submit', async (e) => {
+        const form = document.getElementById('expense-form');
+        const nameInput = document.getElementById('expense-name');
+        const amountInput = document.getElementById('expense-amount');
+        const categoryInput = document.getElementById('expense-category');
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const description = document.getElementById('expense-name').value;
-            const amount = parseFloat(document.getElementById('expense-amount').value);
-            const category = document.getElementById('expense-category').value;
+            const amount = parseFloat(amountInput.value);
 
             if (isNaN(amount) || amount <= 0) {
                 alert('Please enter a valid amount');
                 return;
             }
 
-            const success = await this.manager.addExpense(description, amount, category);
-            if (success) {
-                document.getElementById('expense-form').reset();
+            if (await this.manager.addExpense(nameInput.value, amount, categoryInput.value)) {
+                form.reset();
             } else {
                 alert('Failed to add expense');
             }
@@ -31,18 +33,14 @@ class ExpenseUI {
         this.updateCategoryTotals();
         this.updateLastTransaction();
         this.updateMonthlyExpenses();
-        // Update budget UI after expense changes
-        if (app?.budget?.ui) {
-            app.budget.ui.updateDisplay();
-        }
+        app.budget.ui.updateDisplay();
     }
 
     updateExpenseList(expenses) {
         const tbody = document.getElementById('expense-list');
         tbody.innerHTML = '';
 
-        expenses
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
+        expenses.sort((a, b) => new Date(b.date) - new Date(a.date))
             .forEach(expense => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
@@ -62,18 +60,18 @@ class ExpenseUI {
     }
 
     updateTotalExpenses() {
-        const total = this.manager.getTotalExpenses();
-        document.getElementById('total-expenses').textContent = `$${total.toFixed(2)}`;
+        document.getElementById('total-expenses').textContent = 
+            `$${this.manager.getTotalExpenses().toFixed(2)}`;
     }
 
     updateCategoryTotals() {
-        const categoryTotals = this.manager.getCategoryTotals();
+        const totals = this.manager.getCategoryTotals();
         const totalExpenses = this.manager.getTotalExpenses();
 
         document.querySelectorAll('.category-box').forEach(box => {
             const category = box.dataset.category;
-            const total = categoryTotals[category] || 0;
-            const percent = totalExpenses > 0 ? (total / totalExpenses) * 100 : 0;
+            const total = totals[category] || 0;
+            const percent = totalExpenses ? (total / totalExpenses) * 100 : 0;
             
             box.querySelector('.category-amount').textContent = `$${total.toFixed(2)}`;
             box.querySelector('.category-percent').textContent = `${percent.toFixed(1)}%`;
@@ -81,32 +79,13 @@ class ExpenseUI {
     }
 
     updateLastTransaction() {
-        const lastTransaction = document.getElementById('last-transaction');
         const latest = this.manager.getLastTransaction();
-        
-        if (latest) {
-            lastTransaction.textContent = `$${latest.amount.toFixed(2)} - ${latest.description}`;
-        } else {
-            lastTransaction.textContent = '-';
-        }
+        document.getElementById('last-transaction').textContent = 
+            latest ? `$${latest.amount.toFixed(2)} - ${latest.description}` : '-';
     }
 
     updateMonthlyExpenses() {
-        const monthlyTotal = this.manager.getMonthlyExpenses();
-        document.getElementById('month-expenses').textContent = `$${monthlyTotal.toFixed(2)}`;
-    }
-
-    updateBudgetMeter() {
-        const totalBudget = app.budget.getAmount();
-        const totalExpenses = this.manager.getTotalExpenses();
-        const percentage = (totalExpenses / totalBudget) * 100;
-        
-        const meterFill = document.getElementById('budget-meter');
-        meterFill.style.width = `${Math.min(percentage, 100)}%`;
-        meterFill.style.backgroundColor = percentage > 90 ? 'var(--danger-color)' : 
-                                        percentage > 75 ? 'var(--warning-color)' : 
-                                        'var(--primary-color)';
-        
-        app.budget.updateRemaining();
+        document.getElementById('month-expenses').textContent = 
+            `$${this.manager.getMonthlyExpenses().toFixed(2)}`;
     }
 }

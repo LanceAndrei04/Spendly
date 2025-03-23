@@ -1,4 +1,3 @@
-// Show/hide auth forms
 function showLogin() {
     document.getElementById('login-form').classList.remove('hidden');
     document.getElementById('signup-form').classList.add('hidden');
@@ -13,7 +12,6 @@ function showSignup() {
     document.querySelector('.auth-tab:nth-child(2)').classList.add('active');
 }
 
-// Check if user is already logged in
 document.addEventListener('DOMContentLoaded', () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Handle login form submission
 document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -51,7 +48,6 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     }
 });
 
-// Handle signup form submission
 document.getElementById('signup-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -88,25 +84,21 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
     }
 });
 
-// Show main app and initialize components
 function showApp(user) {
     document.getElementById('auth-section').classList.add('hidden');
     document.getElementById('app-section').classList.remove('hidden');
     app.initialize(user);
 }
 
-// Handle logout
 function logout() {
     localStorage.removeItem('currentUser');
     document.getElementById('auth-section').classList.remove('hidden');
     document.getElementById('app-section').classList.add('hidden');
     
-    // Reset forms
     document.getElementById('login-form').reset();
     document.getElementById('signup-form').reset();
     showLogin();
 
-    // Clear app data
     app.user = null;
     app.budget = null;
     app.expenseTracker = null;
