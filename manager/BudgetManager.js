@@ -3,31 +3,27 @@ class BudgetManager {
         this.userId = userId;
         this.amount = 0;
         this.ui = new BudgetUI(this);
-        this.loadBudget();
+this.loadBudget()
     }
 
     async loadBudget() {
         try {
-            const response = await fetch(`/api/budget/${this.userId}`);
-            if (response.ok) {
-                const data = await response.json();
-                this.amount = data.amount || 0;
-                this.ui.updateDisplay();
-                return this.amount;
-            }
+            const { amount } = await fetch(`/api/budget/${this.userId}`)
+                .then(response => response.json());
+            this.amount = amount || 0;
+            this.ui.updateDisplay();
+            return this.amount;
         } catch (error) {
             console.error('Error loading budget:', error);
+            return 0;
         }
-        return 0;
     }
 
     async setBudget(amount) {
         try {
             const response = await fetch(`/api/budget/${this.userId}`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount })
             });
 
@@ -46,8 +42,8 @@ class BudgetManager {
         return this.amount;
     }
 
-    calculateRemaining(totalExpenses) {
-        return this.amount - totalExpenses;
+    calculateRemaining(expenses) {
+        return this.amount - expenses;
     }
 
     getRemainingColor(remaining) {

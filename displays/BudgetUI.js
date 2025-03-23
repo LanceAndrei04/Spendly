@@ -5,18 +5,20 @@ class BudgetUI {
     }
 
     initializeEventListeners() {
-        document.getElementById('budget-form').addEventListener('submit', async (e) => {
+        const form = document.getElementById('budget-form');
+        const amountInput = document.getElementById('budget-amount');
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const amount = parseFloat(document.getElementById('budget-amount').value);
+            const amount = parseFloat(amountInput.value);
 
             if (isNaN(amount) || amount <= 0) {
                 alert('Please enter a valid budget amount');
                 return;
             }
 
-            const success = await this.manager.setBudget(amount);
-            if (success) {
-                document.getElementById('budget-form').reset();
+            if (await this.manager.setBudget(amount)) {
+                form.reset();
                 this.updateDisplay();
             } else {
                 alert('Failed to set budget');
@@ -24,23 +26,19 @@ class BudgetUI {
         });
     }
 
-    updateDisplay() {
+updateDisplay() {
         const totalBudget = this.manager.getAmount();
         document.getElementById('total-budget').textContent = `$${totalBudget.toFixed(2)}`;
-        this.updateMeter();
+        this.updateMeter(totalBudget);
     }
 
-    updateMeter() {
-        const totalBudget = this.manager.getAmount();
+    updateMeter(totalBudget) {
         const totalExpenses = app?.expenseManager?.getTotalExpenses() || 0;
         const remaining = this.manager.calculateRemaining(totalExpenses);
-        
-        // Update remaining amount with proper color
-        const remainingElement = document.getElementById('remaining-budget');
-        remainingElement.textContent = `$${remaining.toFixed(2)}`;
-        remainingElement.style.color = this.manager.getRemainingColor(remaining);
 
-        // Update meter fill
+        document.getElementById('remaining-budget').textContent = `$${remaining.toFixed(2)}`;
+        document.getElementById('remaining-budget').style.color = this.manager.getRemainingColor(remaining);
+
         if (totalBudget > 0) {
             const percentage = (totalExpenses / totalBudget) * 100;
             const meterFill = document.getElementById('budget-meter');
